@@ -37,17 +37,17 @@ a.cs-large { font-size:48px; }
 
 .cs-whatsapp.cs-small {
 	position: relative;
-	top:3px;
+	top:1px;
 }
 
 .cs-whatsapp.cs-medium {
 	position: relative;
-	top:14px;
+	top:2px;
 }
 
 .cs-whatsapp.cs-large {
 	position: relative;
-	top:21px;
+	top:3px;
 }
 /* icon colors */
 .cs-facebook a,.cs-facebook a:hover{color: #3b5998;border:none;}
