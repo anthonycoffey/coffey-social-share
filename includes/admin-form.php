@@ -83,6 +83,9 @@ function admin_form( $coffey_options ){
 			<tr>
 				<th><label for="cs-select-postion">Show on</label></th>
 				<td>
+					<input type="checkbox" name="coffey_options[cs-show-on][]" value="home" <?php checked( in_array( 'home', (array)$coffey_options['cs-show-on'] ) ); ?>>
+					home page
+					<br>
 					<input type="checkbox" name="coffey_options[cs-show-on][]" value="pages" <?php checked( in_array( 'pages', (array)$coffey_options['cs-show-on'] ) ); ?>>
 					pages
 					<br>

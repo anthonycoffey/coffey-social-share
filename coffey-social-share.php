@@ -79,13 +79,12 @@ class coffey_social_share{
 	}
 
 	public function append_sharediv( $content ) {
-	
-		$coffey_options = $this->get_coffey_options('coffey_options');
+
+		$coffey_options = get_option('coffey_options');
 		// get current post's id
 		global $post;
 		$post_id = $post->ID;
 
-	
 		if( is_home() && !in_array( 'home', (array)$coffey_options['cs-show-on'] ) )
 			return $content;
 		if( is_single() && !in_array( 'posts', (array)$coffey_options['cs-show-on'] ) )
@@ -109,12 +108,15 @@ class coffey_social_share{
 	}
 
 	public function append_sharediv_to_featured_image($html){
-	
-		$coffey_options = $this->get_coffey_options('coffey_options');
-	
+
+		$coffey_options = get_option('coffey_options');
+
 		if( is_single() && !in_array( 'posts', (array)$coffey_options['cs-show-on'] ) )
 			return $html;
 		if( is_page() && !in_array( 'pages', (array)$coffey_options['cs-show-on'] ) )
+			return $html;
+
+		if( is_home() && !in_array( 'home', (array)$coffey_options['cs-show-on'] ) )
 			return $html;
 		// check custom post types too
 		$custom_post_types = coffey_social_share::get_registered_custom_posttypes();
@@ -123,8 +125,6 @@ class coffey_social_share{
     			return $html;
 			}
 
-
-		$coffey_options = get_option('coffey_options');
 		if( !empty($coffey_options['cs-select-position']) && is_array($coffey_options['cs-select-position']) && in_array('inside-featured-img', $coffey_options['cs-select-position']) && is_single() ){
 			return $html .= '<div class="ft-img-share ft-img-share-icons-'.$coffey_options['cs-select-size'].'">'.$this->coffey_html_markup().'</div>';
 		}	else{
@@ -137,16 +137,22 @@ class coffey_social_share{
 	$coffey_options = get_option('coffey_options');
 
 	if( !empty($coffey_options['cs-select-position']) && is_array($coffey_options['cs-select-position']) && in_array('floating-toolbar', $coffey_options['cs-select-position']) ){
-		
+
 		if( is_single() && in_array( 'posts', (array)$coffey_options['cs-show-on'] ) ){
-			
+
 			echo '<div class="floating-share-icons">'.$this->coffey_html_markup().'</div>';
-		
+
 		}
 		if( is_page() && in_array( 'pages', (array)$coffey_options['cs-show-on'] ) ){
 
 			echo '<div class="floating-share-icons">'.$this->coffey_html_markup().'</div>';
-			
+
+		}
+
+		if( is_home() && in_array( 'home', (array)$coffey_options['cs-show-on'] ) ){
+
+			echo '<div class="floating-share-icons">'.$this->coffey_html_markup().'</div>';
+
 		}
 		// check custom post types too
 		$custom_post_types = coffey_social_share::get_registered_custom_posttypes();
@@ -154,11 +160,11 @@ class coffey_social_share{
 				if ( is_singular( $value ) && in_array( $value, (array)$coffey_options['cs-show-on'] ))
 
 					echo '<div class="floating-share-icons">'.$this->coffey_html_markup().'</div>';
-    			
+
 			}
 
 		}
-		
+
 	}
 
 	public function get_defaults($preset=true) {
@@ -182,7 +188,7 @@ class coffey_social_share{
 	/* Generate HTML for Share Icons */
 	public function coffey_html_markup() {
 
-		$coffey_options = $this->get_coffey_options('coffey_options');
+		$coffey_options = get_option('coffey_options');
 
 		// add class if necessary
 		$class = '';
