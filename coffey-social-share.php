@@ -169,8 +169,7 @@ class coffey_social_share{
 				'cs-color' => '',
 				'cs-color-select' => '',
 				'cs-order' => array('facebook'=>1,'twitter'=>2,'googleplus'=>3,'linkedin'=>4,'pinterest'=>5),
-				'cs-show-on' => $preset ? array('posts') : array(),
-				'cs-exclude-on' => '',
+				'cs-show-on' => $preset ? array('posts') : array()
 				);
 	}
 
