@@ -79,6 +79,7 @@ class coffey_social_share{
 	}
 
 	public function append_sharediv( $content ) {
+	
 		$coffey_options = $this->get_coffey_options('coffey_options');
 		// get current post's id
 		global $post;
@@ -108,7 +109,8 @@ class coffey_social_share{
 	}
 
 	public function append_sharediv_to_featured_image($html){
-
+	
+		$coffey_options = $this->get_coffey_options('coffey_options');
 	
 		if( is_single() && !in_array( 'posts', (array)$coffey_options['cs-show-on'] ) )
 			return $html;
