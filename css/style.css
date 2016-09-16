@@ -50,11 +50,11 @@ a.cs-large { font-size:48px; }
 	top:3px;
 }
 /* icon colors */
-.cs-facebook a,.cs-facebook a:hover{color: #3b5998;border:none;}
-.cs-twitter a,.cs-twitter a:hover{color: #55acee;border:none;}
-.cs-googleplus a,.cs-googleplus a:hover{color: #dd4b39;border:none;}
-.cs-linkedin a,.cs-linkedin a:hover{color: #007bb5;border:none;}
-.cs-pinterest a,.cs-pinterest a:hover{color: #cb2027;border:none;}
+.cs-facebook a,.cs-facebook a:hover,.cs-facebook a:visited{color: #3b5998;border:none;}
+.cs-twitter a,.cs-twitter a:hover,.cs-twitter a:visited{color: #55acee;border:none;}
+.cs-googleplus a,.cs-googleplus a:hover,.cs-googleplus a:visited{color: #dd4b39;border:none;}
+.cs-linkedin a,.cs-linkedin a:hover,.cs-linkedin a:visited{color: #007bb5;border:none;}
+.cs-pinterest a,.cs-pinterest a:hover,.cs-pinterest a:visited{color: #cb2027;border:none;}
 
 .ft-img-share {
 	position: relative;
