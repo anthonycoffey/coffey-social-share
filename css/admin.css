@@ -1,0 +1,10 @@
+.form-table.cs-settings-table p{
+	margin-bottom: 8px;
+}
+.cs-settings-table input, .cs-settings-table img{
+	vertical-align: middle;
+}
+
+input.cs-order-select {
+  width:60px;
+}
