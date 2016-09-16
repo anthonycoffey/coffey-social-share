@@ -107,11 +107,12 @@ function admin_form( $coffey_options ){
 				<th><label for="cs-order">Select Order</label></th>
 				<td>
 					<p><b>Please select a number 1-5 to rearrange icons.</b> Duplicate numbers will be ignored, as well as disabled services.</p>
-					facebook <input class="cs-order-select" min="1" max="5" type="number" name="coffey_options[cs-order][facebook]" value="<?php echo (empty($coffey_options['cs-order']['facebook'])) ? 1 : $coffey_options['cs-order']['facebook']; ?>"></br>
-					twitter <input class="cs-order-select" min="1" max="5" type="number" name="coffey_options[cs-order][twitter]" value="<?php echo (empty($coffey_options['cs-order']['twitter'])) ? 2 : $coffey_options['cs-order']['twitter']; ?>"></br>
-					googleplus <input class="cs-order-select" min="1" max="5" type="number" name="coffey_options[cs-order][googleplus]" value="<?php echo (empty($coffey_options['cs-order']['googleplus'])) ? 3 : $coffey_options['cs-order']['googleplus']; ?>"></br>
-					linkedin <input class="cs-order-select" min="1" max="5" type="number" name="coffey_options[cs-order][linkedin]" value="<?php echo (empty($coffey_options['cs-order']['linkedin'])) ? 4 : $coffey_options['cs-order']['linkedin']; ?>"></br>
-					pinterest <input class="cs-order-select" min="1" max="5" type="number" name="coffey_options[cs-order][pinterest]" value="<?php echo (empty($coffey_options['cs-order']['pinterest'])) ? 5 : $coffey_options['cs-order']['pinterest']; ?>"></br>
+					facebook <input class="cs-order-select" min="1" max="6" type="number" name="coffey_options[cs-order][facebook]" value="<?php echo (empty($coffey_options['cs-order']['facebook'])) ? 1 : $coffey_options['cs-order']['facebook']; ?>"></br>
+					twitter <input class="cs-order-select" min="1" max="6" type="number" name="coffey_options[cs-order][twitter]" value="<?php echo (empty($coffey_options['cs-order']['twitter'])) ? 2 : $coffey_options['cs-order']['twitter']; ?>"></br>
+					googleplus <input class="cs-order-select" min="1" max="6" type="number" name="coffey_options[cs-order][googleplus]" value="<?php echo (empty($coffey_options['cs-order']['googleplus'])) ? 3 : $coffey_options['cs-order']['googleplus']; ?>"></br>
+					linkedin <input class="cs-order-select" min="1" max="6" type="number" name="coffey_options[cs-order][linkedin]" value="<?php echo (empty($coffey_options['cs-order']['linkedin'])) ? 4 : $coffey_options['cs-order']['linkedin']; ?>"></br>
+					pinterest <input class="cs-order-select" min="1" max="6" type="number" name="coffey_options[cs-order][pinterest]" value="<?php echo (empty($coffey_options['cs-order']['pinterest'])) ? 5 : $coffey_options['cs-order']['pinterest']; ?>"></br>
+					whatsapp <input class="cs-order-select" min="1" max="6" type="number" name="coffey_options[cs-order][whatsapp]" value="<?php echo (empty($coffey_options['cs-order']['whatsapp'])) ? 6 : $coffey_options['cs-order']['whatsapp']; ?>">
 				</td>
 			</tr>
 		</table>
