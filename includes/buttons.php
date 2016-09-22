@@ -1,5 +1,5 @@
 <?php
-function get_buttons_markup_arr($permalink,$img,$title){
+function cs_get_buttons_markup_arr($permalink,$img,$title){
 
 	$url = esc_url($permalink);
 	$img = esc_url($img);

@@ -1,5 +1,5 @@
 <?php
-function admin_form( $coffey_options ){
+function cs_admin_form( $coffey_options ){
 	?>
 		<table class="form-table cs-settings-table">
 			<tr>

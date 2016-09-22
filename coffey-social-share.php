@@ -17,41 +17,41 @@ class coffey_social_share{
 	public function __construct() {
 
 		// register our settings page
-		add_action( 'admin_menu', array( $this, 'coffey_register_submenu' ) );
+		add_action( 'admin_menu', array( $this, 'register_submenu' ) );
 
 		// register setting
-		add_action( 'admin_init', array( $this, 'coffey_register_settings' ) );
+		add_action( 'admin_init', array( $this, 'register_settings' ) );
 
 		// add scripts
-		add_action( 'wp_enqueue_scripts', array( $this,'coffey_load_styles_scripts' ) );
-		add_action( 'admin_enqueue_scripts', array( $this,'coffey_load_admin_styles_scripts' ) );
-		add_action('wp_footer', array($this,'coffey_scripts_footer'));
+		add_action( 'wp_enqueue_scripts', array( $this,'load_styles_scripts' ) );
+		add_action( 'admin_enqueue_scripts', array( $this,'load_admin_styles_scripts' ) );
+		add_action('wp_footer', array($this,'add_scripts_to_footer'));
 
 		// add share icon markup
 		add_filter( 'the_content', array( $this, 'append_sharediv' ) );
 		add_filter('post_thumbnail_html',array( $this, 'append_sharediv_to_featured_image') );
 		add_filter('wp_footer',array( $this, 'append_sharediv_to_footer') );
-		add_shortcode('coffey-social-share', array($this,'coffey_html_markup' ));
+		add_shortcode('coffey-social-share', array($this,'html_markup' ));
 
-		register_activation_hook( __FILE__, array( $this, 'coffey_load_defaults' ) );
+		register_activation_hook( __FILE__, array( $this, 'load_defaults' ) );
 
 	}
 
 
 
-	public function coffey_load_admin_styles_scripts(){
+	public function load_admin_styles_scripts(){
 		wp_enqueue_style( 'coffey-social-share-admin', plugins_url('css/admin.css',__FILE__) );
 		wp_enqueue_script( 'cs-color-picker', plugins_url('js/jscolor.min.js',__FILE__));
 	}
 
-	public function coffey_load_styles_scripts(){
+	public function load_styles_scripts(){
 		$coffey_options = get_option('coffey_options');
 		wp_enqueue_style( 'font-awesome-social-icons', '//netdna.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.css');
 
 		wp_enqueue_style( 'coffey-social-share-main', plugins_url('css/style.css',__FILE__) );
 	}
 
-	public function coffey_scripts_footer() {
+	public function add_scripts_to_footer() {
 		// forces all share links to open in popup window
 		echo "<script>jQuery(document).ready(function($) {
 								    $('.cs-share-link').click(function(e) {
@@ -70,11 +70,11 @@ class coffey_social_share{
 			echo '<script type="text/javascript"> if(typeof wabtn4fg==="undefined")   {wabtn4fg=1;h=document.head||document.getElementsByTagName("head")[0],s=document.createElement("script");s.type="text/javascript";s.src="//cdn.jsdelivr.net/whatsapp-sharing/1.3.3/whatsapp-button.js";h.appendChild(s)}</script>';
 	}
 
-	public function coffey_get_services() {
+	public function get_services() {
 		return array('facebook', 'twitter', 'googleplus', 'linkedin', 'pinterest', 'whatsapp');
 	}
 
-	public function coffey_load_defaults(){
+	public function load_defaults(){
 		update_option( 'coffey_options', $this->get_defaults() );
 	}
 
@@ -98,7 +98,7 @@ class coffey_social_share{
     			return $content;
 			}
 
-		$coffey_html_markup = $this->coffey_html_markup();
+		$coffey_html_markup = $this->html_markup();
 
 		if( is_array($coffey_options['cs-select-position']) && in_array('after-title', $coffey_options['cs-select-position']) )
 			$content = $coffey_html_markup.$content;
@@ -126,7 +126,7 @@ class coffey_social_share{
 			}
 
 		if( !empty($coffey_options['cs-select-position']) && is_array($coffey_options['cs-select-position']) && in_array('inside-featured-img', $coffey_options['cs-select-position']) && is_single() ){
-			return $html .= '<div class="ft-img-share ft-img-share-icons-'.$coffey_options['cs-select-size'].'">'.$this->coffey_html_markup().'</div>';
+			return $html .= '<div class="ft-img-share ft-img-share-icons-'.$coffey_options['cs-select-size'].'">'.$this->html_markup().'</div>';
 		}	else{
 			return $html;
 		}
@@ -140,18 +140,18 @@ class coffey_social_share{
 
 		if( is_single() && in_array( 'posts', (array)$coffey_options['cs-show-on'] ) ){
 
-			echo '<div class="floating-share-icons">'.$this->coffey_html_markup().'</div>';
+			echo '<div class="floating-share-icons">'.$this->html_markup().'</div>';
 
 		}
 		if( is_page() && in_array( 'pages', (array)$coffey_options['cs-show-on'] ) ){
 
-			echo '<div class="floating-share-icons">'.$this->coffey_html_markup().'</div>';
+			echo '<div class="floating-share-icons">'.$this->html_markup().'</div>';
 
 		}
 
 		if( is_home() && in_array( 'home', (array)$coffey_options['cs-show-on'] ) ){
 
-			echo '<div class="floating-share-icons">'.$this->coffey_html_markup().'</div>';
+			echo '<div class="floating-share-icons">'.$this->html_markup().'</div>';
 
 		}
 		// check custom post types too
@@ -159,7 +159,7 @@ class coffey_social_share{
 			foreach ($custom_post_types as $key => $value) {
 				if ( is_singular( $value ) && in_array( $value, (array)$coffey_options['cs-show-on'] ))
 
-					echo '<div class="floating-share-icons">'.$this->coffey_html_markup().'</div>';
+					echo '<div class="floating-share-icons">'.$this->html_markup().'</div>';
 
 			}
 
@@ -171,8 +171,8 @@ class coffey_social_share{
 		return array(
 				'cs-select-style' => 'small-buttons',
 				'cs-select-size'  => 'small',
-				'cs-available-services' => $this->coffey_get_services(),
-				'cs-selected-services' => $preset ? $this->coffey_get_services() : array(),
+				'cs-available-services' => $this->get_services(),
+				'cs-selected-services' => $preset ? $this->get_services() : array(),
 				'cs-select-position' => $preset ? array('after-title') : array(),
 				'cs-color' => '',
 				'cs-color-select' => '',
@@ -181,12 +181,12 @@ class coffey_social_share{
 				);
 	}
 
-	public function get_coffey_options() {
+	public function get_options() {
 		return array_merge( $this->get_defaults(false), get_option('coffey_options') );
 	}
 
 	/* Generate HTML for Share Icons */
-	public function coffey_html_markup() {
+	public function html_markup() {
 
 		$coffey_options = get_option('coffey_options');
 
@@ -195,7 +195,7 @@ class coffey_social_share{
 
 		$featured_image_url =  (has_post_thumbnail(get_the_ID())) ? wp_get_attachment_image_url(get_post_thumbnail_id(get_the_ID()),'medium') : '';
 
-		$service_markup_arr = get_buttons_markup_arr(get_the_permalink(),$featured_image_url, get_the_title());
+		$service_markup_arr = cs_get_buttons_markup_arr(get_the_permalink(),$featured_image_url, get_the_title());
 
 		$sorted_services= $coffey_options['cs-order'];
 		uasort($sorted_services,array($this,'sort_services'));
@@ -220,7 +220,7 @@ class coffey_social_share{
 	}
 
 	/* Register Settings */
-	public function coffey_register_settings(){
+	public function register_settings(){
 
 		register_setting( 'coffey_options', 'coffey_options' );
 
@@ -229,16 +229,16 @@ class coffey_social_share{
 	/*
 	 * Add sub menu page in Settings for configuring plugin
 	 */
-	public function coffey_register_submenu(){
+	public function register_submenu(){
 
-		add_submenu_page( 'options-general.php', 'Coffey Social Share Settings', 'Coffey Social Share', 'activate_plugins', 'coffey-social-share-settings', array( $this, 'coffey_submenu_page' ) );
+		add_submenu_page( 'options-general.php', 'Coffey Social Share Settings', 'Coffey Social Share', 'activate_plugins', 'coffey-social-share-settings', array( $this, 'submenu_page' ) );
 
 	}
 
 	/*
 	 * Callback for add_submenu_page for generating markup of page
 	 */
-	public function coffey_submenu_page() {
+	public function submenu_page() {
 		?>
 		<div class="wrap">
 			<h2>Settings</h2>
@@ -246,9 +246,9 @@ class coffey_social_share{
 			<?php settings_fields('coffey_options'); ?>
 			<?php
 			$coffey_options = get_option('coffey_options');
-			$coffey_options['cs-available-services'] = $this->coffey_get_services();
+			$coffey_options['cs-available-services'] = $this->get_services();
 			?>
-			<?php admin_form($coffey_options); ?>
+			<?php cs_admin_form($coffey_options); ?>
 		</div>
 		<?php
 	}
