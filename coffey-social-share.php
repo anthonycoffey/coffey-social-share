@@ -45,9 +45,7 @@ class coffey_social_share{
 	}
 
 	public function load_styles_scripts(){
-		$coffey_options = get_option('coffey_options');
 		wp_enqueue_style( 'font-awesome-social-icons', '//netdna.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.css');
-
 		wp_enqueue_style( 'coffey-social-share-main', plugins_url('css/style.css',__FILE__) );
 	}
 
